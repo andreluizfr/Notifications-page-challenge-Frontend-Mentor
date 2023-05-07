@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;800&display=swap" rel="stylesheet">
+    
+    <title>Frontend Mentor | Notifications page</title>
+
+    <style>
+      *{
+        box-sizing: border-box;
+      }
+      body{
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        min-width: 350px;
+      }
+      .background{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: hsl(210, 60%, 98%);
+      }
+      .container{
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 670px;
+        height: fit-content;
+        padding: 30px;
+        border-radius: 10px;
+        background-color: hsl(0, 0%, 100%);
+      }
+      .header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        margin-bottom: 20px;
+      }
+      .notifications{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+      .notifications .title{
+        font-weight: 800;
+        font-size: 20px;
+      }
+      .notifications .number-of-notifications{
+        padding: 1px 8px;
+        border-radius: 6px;
+        font-size: 16px;
+        color: hsl(0, 0%, 100%);
+        background-color: hsl(219, 85%, 26%);
+      }
+      .mark-all-as-read{
+        font-size: 14px;
+        font-weight: 500;
+        color: hsl(219, 14%, 63%);
+        cursor: pointer;
+      }
+      .mark-all-as-read:hover{
+        color: hsl(219, 85%, 26%);
+      }
+      .notifications-list{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 5px;
+      }
+      .notification-container{
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 15px;
+        width: 100%;
+        background-color: hsl(210, 60%, 98%);
+      }
+      .notification-container[read="true"]{
+        background-color: transparent;
+      }
+      .notification-container .user-avatar{
+        width: 40px;
+        height: auto;
+        border-radius: 50%;
+      }
+      .notification-container .notification-infos{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 5px;
+      }
+
+      .notification-infos .notification-message{
+        position: relative;
+        font-size: 15px;
+        font-weight: 500;
+        color: hsl(219, 12%, 42%);
+      }
+      .notification-infos .notification-message .user-name{
+        font-weight: 800;
+        color: hsl(224, 21%, 14%);
+        cursor: pointer;
+      }
+      .notification-infos .notification-message .user-name:hover{
+        color: hsl(219, 85%, 26%);
+      }
+      .notification-infos .notification-message .post{
+        font-weight: 800;
+        color: hsl(219, 12%, 42%);
+        cursor: pointer;
+      }
+      .notification-infos .notification-message .post:hover{
+        color: hsl(219, 85%, 26%);
+      }
+      .notification-infos .notification-message .group{
+        font-weight: 800;
+        color: hsl(219, 85%, 26%);
+        cursor: pointer;
+      }
+
+      .notification-container[read="false"] .new-notification-icon{
+        display: inline-block;
+        margin-left: 5px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: hsl(1, 90%, 64%);
+      }
+
+      .notification-time{
+        font-size: 13px;
+        font-weight: 500;
+        color: hsl(219, 14%, 63%);
+      }
+
+      .notification-private-message{
+        padding: 15px;
+        border: 1px solid rgba(0,0,0, 0.24);
+        border-radius: 4px;
+        margin-top: 5px;
+        background-color: hsl(0, 0%, 100%);
+        font-size: 15px;
+        color: hsl(219, 12%, 42%);
+        cursor: pointer;
+      }
+      .notification-private-message:hover{
+        border: 1px solid hsl(211, 68%, 94%);
+        background-color: hsl(211, 68%, 94%);
+      }
+
+      @media screen and (max-width: 720px) {
+        .container{
+          width: 100%;
+          height: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    
+
+    <div class="background">
+      <main class="container">
+
+        <header class="header">
+          <div class="notifications">
+            <span class="title">Notifications</span>
+            <span class="number-of-notifications">3</span>
+          </div>
+          <span class="mark-all-as-read">Mark all as read</span>
+        </header>
+
+        <div class="notifications-list">
+
+          <article class="notification-container" read="false">
+            <img class="user-avatar" src="assets/images/avatar-mark-webber.webp"/>
+            <div class="notification-infos">
+              <div class="notification-message">
+                <span class="user-name">Mark Webber</span> 
+                reacted to your recent post 
+                <span class="post">My first tournament today!</span>
+                <span class="new-notification-icon"></span>
+              </div>
+              <span class="notification-time">1m ago</span>
+            </div>
+          </article>
+
+          <article class="notification-container" read="false">
+            <img class="user-avatar" src="assets/images/avatar-angela-gray.webp"/>
+            <div class="notification-infos">
+              <div class="notification-message">
+                <span class="user-name">Angela Gray</span> 
+                followed you
+                <span class="new-notification-icon"></span>
+              </div>
+              <span class="notification-time">5m ago</span>
+            </div>
+          </article>
+
+          <article class="notification-container" read="false">
+            <img class="user-avatar" src="assets/images/avatar-jacob-thompson.webp"/>
+            <div class="notification-infos">
+              <div class="notification-message">
+                <span class="user-name">Jacob Thompson</span> 
+                has joined your group 
+                <span class="group">Chess Club</span>
+                <span class="new-notification-icon"></span>
+              </div>
+              <span class="notification-time">1 day ago</span>
+            </div>
+          </article>
+
+          <article class="notification-container" read="true">
+            <img class="user-avatar" src="assets/images/avatar-rizky-hasanuddin.webp"/>
+            <div class="notification-infos">
+              <div class="notification-message">
+                <span class="user-name"> Rizky Hasanuddin</span> 
+                sent you a private message
+                <span class="new-notification-icon"></span>
+              </div>
+              <span class="notification-time">5 days ago</span>
+              <span class="notification-private-message">
+                Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and I'm already having lots of fun and improving my game.
+              </span>
+            </div>
+          </article>
+
+          <article class="notification-container" read="true">
+            <img class="user-avatar" src="assets/images/avatar-kimberly-smith.webp"/>
+            <div class="notification-infos">
+              <div class="notification-message">
+                <span class="user-name">Kimberly Smith</span> 
+                commented on your picture
+                <span class="new-notification-icon"></span>
+              </div>
+              <span class="notification-time">1 week ago</span>
+            </div>
+          </article>
+
+          <article class="notification-container" read="true">
+            <img class="user-avatar" src="assets/images/avatar-nathan-peterson.webp"/>
+            <div class="notification-infos">
+              <div class="notification-message">
+                <span class="user-name">Nathan Peterson</span> 
+                reacted to your recent post 
+                <span class="post">5 end-game strategies to increase your win rate</span>
+                <span class="new-notification-icon"></span>
+              </div>
+              <span class="notification-time">2 week ago</span>
+            </div>
+          </article>
+
+          <article class="notification-container" read="true">
+            <img class="user-avatar" src="assets/images/avatar-anna-kim.webp"/>
+            <div class="notification-infos">
+              <div class="notification-message">
+                <span class="user-name">Anna Kim</span> 
+                left the group
+                <span class="group">Chess Club</span>
+                <span class="new-notification-icon"></span>
+              </div>
+              <span class="notification-time">2 weeks ago</span>
+            </div>
+          </article>
+
+        </div>
+
+      </main>
+    </div>
+    
+  </body>
+</html>
